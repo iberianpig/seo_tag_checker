@@ -8,11 +8,7 @@ url = ARGV[0]
 user     = ''
 password = ''
 
-if user.empty? && password.empty?
-  client = RestClient::Resource.new(url, user: user, password: password)
-else
-  client = RestClient::Resource.new(url)
-end
+client = RestClient::Resource.new(url, user: user, password: password)
 
 doc = Nokogiri::HTML(client.get(user_agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'), nil, 'UTF-8')
 
