@@ -2,7 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'rest-client'
 require 'optparse'
-require 'pry-debugger'
+require 'pry-byebug'
 
 options = {}
 OptionParser.new do |opt|
@@ -15,6 +15,7 @@ if options[:f]
   begin
     File.open(options[:f]) do |file|
       url_list = file.read.split("\n")
+      url_list.uniq!
     end
   rescue SystemCallError => e
     puts %(class=[#{e.class}] message=[#{e.message}])
